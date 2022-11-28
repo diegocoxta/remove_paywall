@@ -1,61 +1,20 @@
 import 'package:flutter/material.dart';
-import 'dart:async';
+import './url_manager.dart';
 
-import 'package:receive_sharing_intent/receive_sharing_intent.dart';
+class RemovePaywall extends StatelessWidget {
+  final String? url;
 
-class RemovePaywall extends StatefulWidget {
-  const RemovePaywall({Key? key}) : super(key: key);
-
-  @override
-  RemovePaywallState createState() => RemovePaywallState();
-}
-
-class RemovePaywallState extends State<RemovePaywall> {
-  StreamSubscription? _intentDataStreamSubscription;
-  String? _sharedText;
-
-  @override
-  void initState() {
-    super.initState();
-
-    // For sharing or opening urls/text coming from outside the app while the app is in the memory
-    _intentDataStreamSubscription =
-        ReceiveSharingIntent.getTextStream().listen((String value) {
-      setState(() {
-        _sharedText = value;
-      });
-    });
-
-    // For sharing or opening urls/text coming from outside the app while the app is closed
-    ReceiveSharingIntent.getInitialText().then((String? value) {
-      setState(() {
-        _sharedText = value;
-      });
-    });
-  }
-
-  @override
-  void dispose() {
-    _intentDataStreamSubscription!.cancel();
-    super.dispose();
-  }
+  const RemovePaywall({Key? key, required this.url}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    const textStyleBold = TextStyle(fontWeight: FontWeight.bold);
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Plugin example app'),
-        ),
-        body: Center(
-          child: Column(
-            children: <Widget>[
-              const Text("Shared urls/text:", style: textStyleBold),
-              Text(_sharedText ?? "")
-            ],
-          ),
-        ),
+    UrlManager.openUrl(url);
+
+    return const Center(
+      child: Text(
+        "Open your blocked url in your favorite browser and then share with Remove Paywall to read freely.",
+        style: TextStyle(
+            fontWeight: FontWeight.w700, fontSize: 32, letterSpacing: -1.0),
       ),
     );
   }
