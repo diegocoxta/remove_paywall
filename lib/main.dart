@@ -29,7 +29,7 @@ class AppState extends State<App> {
       url = value;
     });
 
-    await launchUrlString("https://12ft.io/$url",
+    await launchUrlString("https://12ft.io/$value",
         mode: LaunchMode.externalApplication);
   }
 
@@ -51,8 +51,11 @@ class AppState extends State<App> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
-        body: HomePage(url: url),
+        body: HomePage(
+          url: url,
+        ),
       ),
     );
   }
