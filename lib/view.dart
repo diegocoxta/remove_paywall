@@ -1,11 +1,12 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher_string.dart';
 
-class HomePage extends StatelessWidget {
+import 'logic.dart';
+
+class View extends StatelessWidget {
   final String? url;
 
-  const HomePage({Key? key, required this.url}) : super(key: key);
+  const View({Key? key, required this.url}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -40,10 +41,7 @@ class HomePage extends StatelessWidget {
                           TextSpan(
                             text: url,
                             recognizer: TapGestureRecognizer()
-                              ..onTap = () => launchUrlString(
-                                    "https://12ft.io/$url",
-                                    mode: LaunchMode.externalApplication,
-                                  ),
+                              ..onTap = () => Logic.open12ftUrl(url!),
                             style: const TextStyle(
                               fontSize: 18,
                               fontWeight: FontWeight.w300,
@@ -57,10 +55,7 @@ class HomePage extends StatelessWidget {
             Expanded(
               flex: 1,
               child: TextButton(
-                onPressed: () async => await launchUrlString(
-                  "https://12ft.io",
-                  mode: LaunchMode.externalApplication,
-                ),
+                onPressed: () async => Logic.open12ftUrl(""),
                 child: const Text(
                   "Powered by 12ft.io",
                   style: TextStyle(

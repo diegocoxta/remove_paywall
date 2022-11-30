@@ -1,9 +1,8 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:receive_sharing_intent/receive_sharing_intent.dart';
-import 'package:url_launcher/url_launcher_string.dart';
 
-import './homepage.dart';
+import 'view.dart';
+import 'logic.dart';
 
 void main() {
   runApp(const App());
@@ -20,26 +19,14 @@ class AppState extends State<App> {
   StreamSubscription? _intentDataStreamSubscription;
   String? url;
 
-  void openUrl(String? value) async {
-    if (value == null) {
-      return;
-    }
-
-    setState(() {
-      url = value;
-    });
-
-    await launchUrlString("https://12ft.io/$value",
-        mode: LaunchMode.externalApplication);
-  }
-
   @override
   void initState() {
     super.initState();
-    _intentDataStreamSubscription =
-        ReceiveSharingIntent.getTextStream().listen(openUrl);
-
-    ReceiveSharingIntent.getInitialText().then(openUrl);
+    _intentDataStreamSubscription = Logic.subscribeShareIntent((String? value) {
+      setState(() {
+        url = value;
+      });
+    });
   }
 
   @override
@@ -50,6 +37,6 @@ class AppState extends State<App> {
 
   @override
   Widget build(BuildContext context) {
-    return HomePage(url: url);
+    return View(url: url);
   }
 }
