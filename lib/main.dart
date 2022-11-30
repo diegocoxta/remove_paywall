@@ -1,8 +1,9 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:receive_sharing_intent/receive_sharing_intent.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
-import './remove_paywall/remove_paywall.dart';
+import './homepage.dart';
 
 void main() {
   runApp(const App());
@@ -17,21 +18,28 @@ class App extends StatefulWidget {
 
 class AppState extends State<App> {
   StreamSubscription? _intentDataStreamSubscription;
-  String? _sharedUrl;
+  String? url;
 
-  void saveUrl(String? value) async {
+  void openUrl(String? value) async {
+    if (value == null) {
+      return;
+    }
+
     setState(() {
-      _sharedUrl = value;
+      url = value;
     });
+
+    await launchUrlString("https://12ft.io/$url",
+        mode: LaunchMode.externalApplication);
   }
 
   @override
   void initState() {
     super.initState();
     _intentDataStreamSubscription =
-        ReceiveSharingIntent.getTextStream().listen(saveUrl);
+        ReceiveSharingIntent.getTextStream().listen(openUrl);
 
-    ReceiveSharingIntent.getInitialText().then(saveUrl);
+    ReceiveSharingIntent.getInitialText().then(openUrl);
   }
 
   @override
@@ -44,7 +52,7 @@ class AppState extends State<App> {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        body: RemovePaywall(url: _sharedUrl),
+        body: HomePage(url: url),
       ),
     );
   }
