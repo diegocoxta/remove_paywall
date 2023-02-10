@@ -1,5 +1,5 @@
 name: remove_paywall
-description: A new Flutter project.
+description: Provides a simple way to open any url using 12ft.io
 
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
@@ -32,8 +32,8 @@ dependencies:
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
-  cupertino_icons: ^1.0.2
-  url_launcher: ^6.1.7
+  cupertino_icons: ^1.0.5
+  url_launcher: ^6.1.9
   receive_sharing_intent: ^1.4.5
 
 dev_dependencies:

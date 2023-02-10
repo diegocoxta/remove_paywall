@@ -37,6 +37,6 @@ class AppState extends State<App> {
 
   @override
   Widget build(BuildContext context) {
-    return View(url: url);
+    return const View();
   }
 }
