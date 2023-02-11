@@ -1,16 +1,9 @@
 # remove_paywall
 
-A new Flutter project.
+A simple flutter Android-only app to easily unlock paywall-protected pages using 12ft.io
 
-## Getting Started
+## How does it works?
 
-This project is a starting point for a Flutter application.
+With this app, you can open your blocked URL in your favorite web browser and share it with Remove Paywall app to read freely.
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+![preview (1)](https://user-images.githubusercontent.com/3134422/218271004-f8073e6b-db9b-4a80-af3b-4cd3d4f0f6b4.gif)
