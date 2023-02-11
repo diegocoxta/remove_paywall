@@ -2,6 +2,8 @@
 
 A simple flutter Android-only app to easily unlock paywall-protected pages using 12ft.io
 
+*This app was created for personal use, it's not available in any app store.* 
+
 ## How does it works?
 
 With this app, you can open your blocked URL in your favorite web browser and share it with Remove Paywall app to read freely.
